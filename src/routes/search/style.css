@@ -1,0 +1,18 @@
+.search {
+    height: auto;
+}
+.search_bar {
+    background-color: #2CA86A;
+    margin-top: 100px;
+    text-align: center;
+    color: white;
+    padding: 50px;
+}
+.search_bar p {
+    font-size: 20px;
+    font-weight: 400;
+}
+.search_bar form {
+    width: 500px;
+    margin: 20px auto;
+}

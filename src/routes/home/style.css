@@ -1,0 +1,75 @@
+.home {
+	text-align: center;
+}
+.intro {
+	height: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 60px 20px;
+}
+
+.banner {
+	background: url("../../assets/bg2.png");
+	height: 800px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+.banner h1 {
+	font-weight: 800;
+	font-size: 25px;
+	color: #2CA86A;
+}
+.find_btn {
+	background-color: #2CA86A;
+	color: white;
+	border: none;
+	padding: 25px 40px;
+	font-size: 20px;
+	margin-top: 20px;
+	transition-duration: 350ms;
+	transition-property: background, box-shadow, color;
+	transition-timing-function: ease-in-out;
+}
+.find_btn:hover {
+	background-color: #2CA86A;
+	color: white;
+	box-shadow: inset 0 1px 2px rgba(255,255,255,0.3), 0 3px 8px rgba(19,49,69,0.3);
+}
+.home_content_inner {
+	margin: 80px 0;
+}
+.home_content_inner h2 {
+	font-size: 30px;
+	color: #303E50;
+	font-weight: 800;
+}
+.home_content_inner img {
+	margin: 30px 0;
+}
+.home_content_inner p {
+	font-size: 25px;
+}
+.countdown_text {
+	font-weight: 800;
+	margin-top: 60px;
+	color: #2CA86A;
+	font-size: 25px;
+}
+.MyCoundown {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+@media (min-width: 1024px) {
+	.home_content {
+		width: 800px;
+		margin: 0 auto;
+	}
+}

@@ -1,0 +1,87 @@
+html, body {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	background: #ffffff;
+	color: #6a7583;
+	font-family: 'Avenir', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a {
+	color: #008753;
+	cursor: pointer;
+}
+
+.navbar {
+	padding: 25px;
+}
+
+.MyCoundown {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #2CA86A;
+	padding-top: 100px;
+}
+.MyCoundown-col {
+	color: #2CA86A;
+	margin: 0 30px;
+}
+.MyCoundown-col strong {
+	display: block;
+	color: #2CA86A;
+	font-size: 80px;
+	font-weight: 800;
+}
+.MyCoundown-col span {
+	display: block;
+	text-transform: uppercase;
+}
+.navbar .navbar-item {
+	color: #008753;
+	font-weight: 600;
+	padding: 0.5rem 2rem;
+}
+.navbar .navbar-item:hover {
+	background-color: white;
+	color: #008753;
+}
+.search_m_b {
+	margin-bottom: 50px;
+}
+@font-face {
+	font-family: Avenir;
+	src: url('/src/assets/AvenirLTStd-Light.otf');
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: Avenir;
+	src: url('/src/assets/AvenirLTStd-Book.otf');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: Avenir;
+	src: url('/src/assets/AvenirLTStd-Medium.otf');
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: Avenir;
+	src: url('/src/assets/AvenirLTStd-Roman.otf');
+	font-weight: 600
+}
+
+@font-face {
+	font-family: Avenir;
+	src: url('/src/assets/AEH.ttf');
+	font-weight: 800
+}

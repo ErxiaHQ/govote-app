@@ -1,0 +1,20 @@
+.footer {
+    background-color: #2CA86A;
+    color: white;
+    padding: 40px 60px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.footer a {
+    color: white;
+    text-decoration: underline;
+}
+.links {
+    color: white;
+    margin-left: 40px;
+    text-decoration: none;
+}
+.links:hover {
+    color: white;
+}
