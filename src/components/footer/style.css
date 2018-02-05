@@ -10,6 +10,13 @@
     color: white;
     text-decoration: underline;
 }
+.footer a:hover {
+    color: white;
+    text-decoration: underline;
+}
+.text {
+    margin-left: 20px;
+}
 .links {
     color: white;
     margin-left: 40px;

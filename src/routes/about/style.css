@@ -1,0 +1,22 @@
+.about_container {
+    margin-top: 100px;
+    padding: 100px;
+}
+.about_container h1 {
+    font-weight: 800;
+    text-align: left;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+.about_container p {
+    font-size: 25px;
+    margin-top: 50px;
+    color: #6a7583;
+    font-weight: 300;
+}
+@media (min-width: 1024px) {
+    .about_container {
+        width: 800px;
+        margin: 100px auto 0 auto;
+    }
+}

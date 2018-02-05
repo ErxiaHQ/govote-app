@@ -13,6 +13,9 @@ html, body {
 * {
 	box-sizing: border-box;
 }
+.github-button {
+	margin-right: 15px;
+}
 
 a {
 	color: #008753;

@@ -33,6 +33,11 @@
 }
 .share_buttons__twitter:hover, .share_buttons__facebook:hover {
     color: white;
+    text-decoration: none;
+}
+.share_buttons__twitter:focus, .share_buttons__facebook:focus {
+    color: white;
+    text-decoration: none;
 }
 @media (min-width: 1024px) {
     .share_container {

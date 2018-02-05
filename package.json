@@ -24,9 +24,11 @@
     "if-env": "^1.0.0",
     "jest": "^21.2.1",
     "preact-cli": "^2.1.0",
+    "preact-cli-plugin-env-vars": "^1.1.0",
     "preact-render-spy": "^1.2.1"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "bulma": "^0.6.2",
     "classnames": "^2.2.5",
     "moment": "^2.20.1",

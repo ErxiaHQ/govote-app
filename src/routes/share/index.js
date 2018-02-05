@@ -13,8 +13,8 @@ export default class Share extends Component {
         <p>The biggest impact you can have is by also getting your friends to get their PVC too!</p>
 
         <div className={style.share_buttons}>
-          <a className={style.share_buttons__twitter} href="http://twitter.com/share?text=text goes here&url=http://urlgoeshere&hashtags=hashtag1,hashtag2,hashtag3" rel="noopener noreferrer">Share on Twitter</a>
-          <a className={style.share_buttons__facebook} href="https://www.facebook.com/sharer/sharer.php?u=https://worklogs.co&t=Worklogs" target="_blank" rel="noopener noreferrer">Share on Facebook</a>
+          <a className={style.share_buttons__twitter} href="http://twitter.com/share?text=I just checked the closest PV collection area closest to me via&url=http://govote.org.ng&hashtags=#pvc" target="_blank" rel="noopener noreferrer">Share on Twitter</a>
+          <a className={style.share_buttons__facebook} href="https://www.facebook.com/sharer/sharer.php?u=http://govote.org.ng&t=GoVote" target="_blank" rel="noopener noreferrer">Share on Facebook</a>
         </div>
       </div>
     )

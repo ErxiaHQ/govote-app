@@ -31,8 +31,7 @@ export default class Why extends Component {
 
         <p>It’s up to you to vote and decide! You owe it to yourself and your future. </p>
 
-        <p>In the 2015 elections, only 33.7% (67,422,005) of the general population registered to vote (only 43.65% of the 67,422,005 eventually turned out to vote.) <em><a
-          href="http://www.inecnigeria.org/wp-content/uploads/2015/04/summary-of-results.pdf" rel="noopener noreferrer" target="_blank">Source</a></em>.<br /> Let's increase that percentage for the upcoming election.</p>
+        <p>In the 2015 elections, only 33.7% (67,422,005) of the general population registered to vote (only 43.65% of the 67,422,005 eventually turned out to vote.) <em><a href="http://www.inecnigeria.org/wp-content/uploads/2015/04/summary-of-results.pdf" rel="noopener noreferrer" target="_blank">Source</a></em>.<br /> Let's increase that percentage for the upcoming election.</p>
 
         <Link className={findBtn} href="/search">Find a PVC Collection Ward</Link>
       </div>
