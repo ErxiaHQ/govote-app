@@ -21,6 +21,9 @@
 	justify-content: center;
 	text-align: center;
 }
+.banner > div {
+    width: 100%;
+}
 .banner h1 {
 	font-weight: 800;
 	font-size: 25px;
@@ -66,6 +69,21 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+@media (max-width: 768px) {
+    .banner {
+        height: 600px;
+    }
+    .home_content {
+        padding: 0 30px;
+    }
+    .banner > div {
+        padding: 0 20px;
+    }
+    .countdown_text {
+        font-size: 20px;
+    }
+
 }
 @media (min-width: 1024px) {
 	.home_content {

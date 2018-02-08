@@ -1,5 +1,7 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
+import AsyncRoute from 'preact-async-route';
+
 
 import Header from './header';
 import Footer from './footer';
@@ -8,7 +10,6 @@ import Search from '../routes/search';
 import Share from '../routes/share';
 import About from '../routes/about';
 import Why from '../routes/why';
-import 'bulma/css/bulma.css';
 // import Home from 'async!../routes/home';
 // import Profile from 'async!../routes/profile';
 
@@ -30,11 +31,11 @@ export default class App extends Component {
 			<div id="app">
 				<Header />
 				<Router onChange={this.handleRoute}>
-					<Home path="/" />
-					<Search path="/search" />
-					<About path="/about" />
-					<Share path="/share" />
-					<Why path="/why" />
+					<AsyncRoute path="/" component={Home} />
+					<AsyncRoute path="/about" component={About} />
+          <AsyncRoute path="/search" component={Search} />
+          <AsyncRoute path="/share" component={Share} />
+					<AsyncRoute path="/why" component={Why} />
 				</Router>
         <Footer />
 			</div>

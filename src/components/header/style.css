@@ -1,7 +1,22 @@
-.navbar_item {
+.nav__item {
 	color: #008753;
     font-size: 20px;
+	font-weight: 600;
+	padding: 0.5rem 2rem;
 }
-.navbar_end {
-	margin: 0 auto;
+.nav__item:hover {
+	background-color: white;
+	color: #008753;
+}
+.nav {
+	padding: 25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+@media (max-width: 768px) {
+	.nav__item {
+		font-size: 15px;
+		padding: 0.5rem 1rem;
+	}
 }

@@ -7,7 +7,26 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta name="description" content="The 2019 General Elections are almost here and it’s important we all get registered to vote.">
+    <meta name="keywords" content="vote,elections,nigeria">
+    <!--Twitter Card-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="govote - Find PVC Collection Areas">
+    <meta name="twitter:description" content="The 2019 General Elections are almost here and it’s important we all get registered to vote.">
+    <meta name="twitter:image" content="https://govote.org.ng/assets/art.png">
+
+    <meta itemprop="name" content="govote - Find PVC Collection Areas">
+    <meta itemprop="description" content="The 2019 General Elections are almost here and it’s important we all get registered to vote.">
+    <meta itemprop="image" content="https://govote.org.ng/assets/art.png">
+    <!--Facebook/OG data-->
+
+    <meta property="og:title" content="govote - Find PVC Collection Areas">
+    <meta property="og:url" content="https://worklogs.co">
+    <meta property="og:type"  content="website" />
+    <meta property="og:image" content="https://govote.org.ng/assets/art.png">
+    <meta property="og:description" content="The 2019 General Elections are almost here and it’s important we all get registered to vote.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <% if (htmlWebpackPlugin.options.manifest.theme_color) { %>
     <meta name="theme-color" content="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
     <% } %>
@@ -21,12 +40,13 @@
     <% } %>
     <% } %>
     <% } %>
+    <script src="https://buttons.github.io/buttons.js"></script>
+
 </head>
 <body>
 <%= htmlWebpackPlugin.options.ssr({
 url: '/'
 }) %>
-<script async defer src="https://buttons.github.io/buttons.js"></script>
 <script defer src="<%= htmlWebpackPlugin.files.chunks['bundle'].entry %>"></script>
 <script>
   window.fetch || document.write("<script src='<%= htmlWebpackPlugin.files.chunks['polyfills'].entry %>'><\/script>")

@@ -45,3 +45,22 @@
         margin: 100px auto 0 auto;
     }
 }
+@media (max-width: 768px) {
+    .share_buttons {
+        margin-top: 30px;
+    }
+    .share_container {
+        padding: 20px;
+        margin-top: 0;
+    }
+    .share_buttons__twitter {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 20px;
+        padding: 20px 20px;
+    }
+    .share_buttons__facebook{
+        display: block;
+        padding: 20px 20px;
+    }
+}

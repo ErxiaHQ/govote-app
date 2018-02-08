@@ -9,21 +9,27 @@ html, body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
+#disqus_thread {
+	margin-top: 40px;
+}
 * {
 	box-sizing: border-box;
-}
-.github-button {
-	margin-right: 15px;
 }
 
 a {
 	color: #008753;
 	cursor: pointer;
 }
-
-.navbar {
-	padding: 25px;
+.input.is-active, .input.is-focused, .input:active, .input:focus, .textarea.is-active, .textarea.is-focused, .textarea:active, .textarea:focus {
+	border-color: #2CA86A;
+	-webkit-box-shadow: 0 0 0 0.125em rgba(50,115,220,.25);
+	box-shadow: 0 0 0 0.125em rgba(50,115,220,.25);
+}
+.rodal-dialog .button{
+	background-color: #2CA86A;
+}
+.rodal-dialog .button:hover {
+	background-color: #2CA86A;
 }
 
 .MyCoundown {
@@ -47,44 +53,82 @@ a {
 	display: block;
 	text-transform: uppercase;
 }
-.navbar .navbar-item {
-	color: #008753;
-	font-weight: 600;
-	padding: 0.5rem 2rem;
-}
-.navbar .navbar-item:hover {
-	background-color: white;
-	color: #008753;
-}
 .search_m_b {
 	margin-bottom: 50px;
 }
+.github-button {
+	margin-right: 15px;
+}
+.disqus_show {
+	display: block !important;
+}
+.searchpage__row {
+	display: flex;
+	justify-content: center;
+}
+.searchresults_left {
+	width: 65% !important;
+	margin: 0 !important;
+}
+footer.card-footer {
+    background-color: white;
+    box-shadow: 0 1px 5px 1px rgba(0,0,0,0.1);
+}
+@media (max-width: 768px) {
+	.github-button {
+		margin-right: 0;
+	}
+	.MyCoundown {
+		padding: 0 20px;
+	}
+	.MyCoundown-col strong {
+		display: block;
+		color: #2CA86A;
+		font-size: 60px;
+		font-weight: 800;
+	}
+}
+@media (min-width: 481px ) and (max-width: 768px) {
+	.MyCoundown {
+		transform: scale(0.8);
+	}
+}
+@media (min-width: 321px ) and (max-width: 480px) {
+	.MyCoundown {
+		transform: scale(0.5);
+	}
+}
+@media (max-width: 320px) {
+	.MyCoundown {
+		transform: scale(0.4);
+	}
+}
 @font-face {
 	font-family: Avenir;
-	src: url('/src/assets/AvenirLTStd-Light.otf');
+	src: url('/src/assets/AvenirLTStd-Light.otf') format('opentype');
 	font-weight: 300;
 }
 
 @font-face {
 	font-family: Avenir;
-	src: url('/src/assets/AvenirLTStd-Book.otf');
+	src: url('/src/assets/AvenirLTStd-Book.otf') format('opentype');
 	font-weight: 400;
 }
 
 @font-face {
 	font-family: Avenir;
-	src: url('/src/assets/AvenirLTStd-Medium.otf');
+	src: url('/src/assets/AvenirLTStd-Medium.otf') format('opentype');
 	font-weight: 500;
 }
 
 @font-face {
 	font-family: Avenir;
-	src: url('/src/assets/AvenirLTStd-Roman.otf');
+	src: url('/src/assets/AvenirLTStd-Roman.otf') format('opentype');
 	font-weight: 600
 }
 
 @font-face {
 	font-family: Avenir;
-	src: url('/src/assets/AEH.ttf');
+	src: url('/src/assets/AEH.ttf') format('truetype');
 	font-weight: 800
 }

@@ -8,7 +8,7 @@
 }
 .footer a {
     color: white;
-    text-decoration: underline;
+    text-decoration: none;
 }
 .footer a:hover {
     color: white;
@@ -24,4 +24,20 @@
 }
 .links:hover {
     color: white;
+}
+@media (max-width: 768px) {
+    .footer {
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 10px;
+    }
+    .text {
+        margin-left: 0;
+        margin-top: 2px;
+    }
+    .links {
+        margin-left: 0;
+    }
 }

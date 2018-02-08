@@ -1,6 +1,11 @@
 import { h, Component } from 'preact';
 import style from './style';
+import DisqusThread from '../../components/disqus/DisqusThread';
 import axios from 'axios';
+import classnames from 'classnames';
+import Rodal from 'rodal';
+
+import 'rodal/lib/rodal.css';
 
 export default class Search extends Component {
   constructor () {
@@ -8,22 +13,58 @@ export default class Search extends Component {
     this.state = {
       result: false,
       value: '',
-      locations: []
+      loading: false,
+      locations: [],
+      visible: false,
+      showdisqus: false,
+      currentLocation: null
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.show = this.show.bind(this);
+    this.hide = this.hide.bind(this);
+    this.showDisqus = this.showDisqus.bind(this);
+    this.closeDisqus = this.closeDisqus.bind(this);
+  }
+  // noToString (val) {
+  //
+  // }
+  show(val) {
+    return ( e => {
+      e.preventDefault();
+      this.setState({ visible: true });
+      this.setState({ currentLocation: val });
+    });
+  }
+  showDisqus (val) {
+    return ( e => {
+      e.preventDefault();
+      this.setState({ currentLocation: val });
+      this.setState({ showdisqus: true });
+    });
+  }
+  closeDisqus () {
+    return ( e => {
+      e.preventDefault();
+      this.setState({ currentLocation: null });
+      this.setState({ showdisqus: false });
+    });
+  }
+  hide() {
+    this.setState({ visible: false });
+    this.setState({ currentLocation: null });
+
   }
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
-  componentWillMount () {
-    // console.log(process.env.NODE_ENV);
-  }
   handleSubmit(event) {
+    this.setState({ loading: false });
     axios.get('https://api.govote.org.ng/search?query=' + this.state.value + '&key=k9ihbvse57fvsujbsvsi5362WE$NFD2')
       .then(res => {
-        // console.log(res.data);
+        console.log(res.data);
+        this.setState({ loading: true });
         this.setState({ locations: res.data.data });
         this.setState({ result: true });
       })
@@ -35,7 +76,29 @@ export default class Search extends Component {
   loadMore () {
     console.log(this.state.currentPage);
   }
+  componentWillMount () {
+    // console.log(process.env.NODE_ENV);
+    axios.get('https://api.govote.org.ng/search?query=' + ' ' + '&key=k9ihbvse57fvsujbsvsi5362WE$NFD2')
+      .then(res => {
+        console.log(res.data);
+        this.setState({ loading: true });
+        this.setState({ locations: res.data.data });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
   render() {
+    let searchResults = classnames(style.search_results, {
+      'searchresults_left': this.state.showdisqus
+    });
+    let searchRow = classnames({
+      'searchpage__row': this.state.showdisqus
+    });
+
+    let disqusSection = classnames(style.disqus_section, {
+      'disqus_show': this.state.showdisqus
+    })
     return (
       <div className={style.search}>
         <div className={style.search_bar}>
@@ -61,10 +124,11 @@ export default class Search extends Component {
           </form>
         </div>
 
-        <div className={style.search_results}>
-          {this.state.result
-            && <div>
-                <p>{this.state.locations.length} search results.</p>
+        <div className={searchRow}>
+          <div className={searchResults}>
+            {this.state.loading
+              ? <div>
+                {this.state.result && <p>{this.state.locations.length} search results.</p>}
                 <div className="columns is-multiline">
                   {this.state.locations.map((item, i) => (
                     <div className="column is-half">
@@ -72,67 +136,216 @@ export default class Search extends Component {
                         <p>{item.name}</p>
                         <p><strong>Address</strong>: {item.address}</p>
                         <p><strong>Area</strong>: {item.area}</p>
-                        <p><strong>State</strong>: {item.state_name} State</p>
+                        {item.city && <p><strong>City</strong>: {item.city}</p>}
+                        <p><strong>State</strong>: {item.state} State</p>
                       </div>
+                      <footer class="card-footer">
+                        { item.latitude || item.longitude ? <a href={'https://www.google.com/maps/?q=' + item.latitude + ',' + item.longitude} class="card-footer-item" target="_blank">View on Map</a> : ''}
+                        <a onClick={this.show(item)} href="#" class="card-footer-item">Suggest Edits</a>
+                        <a onClick={this.showDisqus(item)} href="#" class="card-footer-item">Discuss</a>
+                      </footer>
                     </div>
                   ))}
                 </div>
 
-              {/*<button onClick={this.loadMore} className={style.loadmore_btn}>Load More</button>*/}
-            </div>
-          }
+                {/*<button onClick={this.loadMore} className={style.loadmore_btn}>Load More</button>*/}
+              </div> : <div className="columns is-multiline">
+                <div className="column is-half">
+                  <div className={style.search_collection}>
+                    <p className={style.animated_background__sub__first}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                    <p className={style.animated_background__sub__third}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                  </div>
+                  <footer class="card-footer">
+                    <a href="#" class="card-footer-item">View on Map</a>
+                    <a href="#" class="card-footer-item">Suggest Edits</a>
+                    <a href="#" class="card-footer-item">Discuss</a>
+                  </footer>
+                </div>
+                <div className="column is-half">
+                  <div className={style.search_collection}>
+                    <p className={style.animated_background__sub__first}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                    <p className={style.animated_background__sub__third}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                  </div>
+                  <footer class="card-footer">
+                    <a href="#" class="card-footer-item">View on Map</a>
+                    <a href="#" class="card-footer-item">Suggest Edits</a>
+                    <a href="#" class="card-footer-item">Discuss</a>
+                  </footer>
+                </div>
+                <div className="column is-half">
+                  <div className={style.search_collection}>
+                    <p className={style.animated_background__sub__first}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                    <p className={style.animated_background__sub__third}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                  </div>
+                  <footer class="card-footer">
+                    <a href="#" class="card-footer-item">View on Map</a>
+                    <a href="#" class="card-footer-item">Suggest Edits</a>
+                    <a href="#" class="card-footer-item">Discuss</a>
+                  </footer>
+                </div>
+                <div className="column is-half">
+                  <div className={style.search_collection}>
+                    <p className={style.animated_background__sub__first}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                    <p className={style.animated_background__sub__third}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                  </div>
+                  <footer class="card-footer">
+                    <a href="#" class="card-footer-item">View on Map</a>
+                    <a href="#" class="card-footer-item">Suggest Edits</a>
+                    <a href="#" class="card-footer-item">Discuss</a>
+                  </footer>
+                </div>
+                <div className="column is-half">
+                  <div className={style.search_collection}>
+                    <p className={style.animated_background__sub__first}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                    <p className={style.animated_background__sub__third}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                  </div>
+                  <footer class="card-footer">
+                    <a href="#" class="card-footer-item">View on Map</a>
+                    <a href="#" class="card-footer-item">Suggest Edits</a>
+                    <a href="#" class="card-footer-item">Discuss</a>
+                  </footer>
+                </div>
+                <div className="column is-half">
+                  <div className={style.search_collection}>
+                    <p className={style.animated_background__sub__first}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                    <p className={style.animated_background__sub__third}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                  </div>
+                  <footer class="card-footer">
+                    <a href="#" class="card-footer-item">View on Map</a>
+                    <a href="#" class="card-footer-item">Suggest Edits</a>
+                    <a href="#" class="card-footer-item">Discuss</a>
+                  </footer>
+                </div>
+                <div className="column is-half">
+                  <div className={style.search_collection}>
+                    <p className={style.animated_background__sub__first}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                    <p className={style.animated_background__sub__third}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                  </div>
+                  <footer class="card-footer">
+                    <a href="#" class="card-footer-item">View on Map</a>
+                    <a href="#" class="card-footer-item">Suggest Edits</a>
+                    <a href="#" class="card-footer-item">Discuss</a>
+                  </footer>
+                </div>
+                <div className="column is-half">
+                  <div className={style.search_collection}>
+                    <p className={style.animated_background__sub__first}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                    <p className={style.animated_background__sub__third}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                  </div>
+                  <footer class="card-footer">
+                    <a href="#" class="card-footer-item">View on Map</a>
+                    <a href="#" class="card-footer-item">Suggest Edits</a>
+                    <a href="#" class="card-footer-item">Discuss</a>
+                  </footer>
+                </div>
+                <div className="column is-half">
+                  <div className={style.search_collection}>
+                    <p className={style.animated_background__sub__first}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                    <p className={style.animated_background__sub__third}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                  </div>
+                  <footer class="card-footer">
+                    <a href="#" class="card-footer-item">View on Map</a>
+                    <a href="#" class="card-footer-item">Suggest Edits</a>
+                    <a href="#" class="card-footer-item">Discuss</a>
+                  </footer>
+                </div>
+                <div className="column is-half">
+                  <div className={style.search_collection}>
+                    <p className={style.animated_background__sub__first}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                    <p className={style.animated_background__sub__third}></p>
+                    <p className={style.animated_background__sub__second}></p>
+                  </div>
+                  <footer class="card-footer">
+                    <a href="#" class="card-footer-item">View on Map</a>
+                    <a href="#" class="card-footer-item">Suggest Edits</a>
+                    <a href="#" class="card-footer-item">Discuss</a>
+                  </footer>
+                </div>
+              </div>
+            }
+          </div>
 
-          {!this.state.result && <div className="columns is-multiline">
-            <div className="column is-half">
-              <div className={style.search_collection}>
-                <p>ANIFOWOSHE PRY. SCH</p>
-                <p><strong>Address</strong>: ANIFOWOSHE PRY. SCH.</p>
-                <p><strong>Area</strong>: ANIFOWOSHE/IKEJA</p>
-                <p><strong>State</strong>: Lagos State</p>
+          <div className={disqusSection}>
+            <div className={style.disqus_section__inner}>
+              <div className={style.disqus_section__close}>
+                <a onClick={this.closeDisqus()} href="#">X</a>
               </div>
+              {this.state.currentLocation !== null && <div className={style.disqus_section__content}>
+                <p><strong>{this.state.currentLocation.name}</strong></p>
+                <p>Address: {this.state.currentLocation.address}</p>
+                <p>Area: {this.state.currentLocation.area}</p>
+                <p>City: {this.state.currentLocation.city}</p>
+                <p>State: {this.state.currentLocation.state}</p>
+
+                <DisqusThread id={this.state.currentLocation.id + ''} title={this.state.currentLocation.name} path="/search" />
+              </div>}
             </div>
-            <div className="column is-half">
-              <div className={style.search_collection}>
-                <p>OLOMU PRY. SCH.</p>
-                <p><strong>Address</strong>: OLOMU PRY. SCH.</p>
-                <p><strong>Area</strong>: AJAH/ SANGOTEDO VILLAGE</p>
-                <p><strong>State</strong>: Lagos State</p>
-              </div>
+          </div>
+
+        </div>
+        <Rodal height={550} width={500} animation="fade" visible={this.state.visible} onClose={this.hide}>
+          {this.state.currentLocation !== null && <div>
+            <div className={style.modal__header}>
+              <strong>Suggest Edits for {this.state.currentLocation.name}</strong>
             </div>
-            <div className="column is-half">
-              <div className={style.search_collection}>
-                <p>GOVT TECH COLL.IKOTUN</p>
-                <p><strong>Address</strong>: GOVT TECH COLL.IKOTUN</p>
-                <p><strong>Area</strong>: IKOTUN/IJEGUN</p>
-                <p><strong>State</strong>: Lagos State</p>
-              </div>
-            </div>
-            <div className="column is-half">
-              <div className={style.search_collection}>
-                <p>KURAMO COLLEGE, VICTORIA ISLAND</p>
-                <p><strong>Address</strong>: KURAMO COLLEGE, VICTORIA ISLAND</p>
-                <p><strong>Area</strong>: VICTORIA IS LAND 11</p>
-                <p><strong>State</strong>: Lagos State</p>
-              </div>
-            </div>
-            <div className="column is-half">
-              <div className={style.search_collection}>
-                <p>ST DIMINIC PRY. SCH. YABA</p>
-                <p><strong>Address</strong>: ST DIMINIC PRY. SCH. YABA</p>
-                <p><strong>Area</strong>: IWAYA</p>
-                <p><strong>State</strong>: Lagos State</p>
-              </div>
-            </div>
-            <div className="column is-half">
-              <div className={style.search_collection}>
-                <p>BADAGRY PRY. SCH.</p>
-                <p><strong>Address</strong>: BADAGRY PRY. SCH.</p>
-                <p><strong>Area</strong>: BADAGRY</p>
-                <p><strong>State</strong>: Lagos State</p>
-              </div>
+            <div className={style.modal__body}>
+              <form action="https://formspree.io/govoteng@gmail.com" method="POST">
+                <div className="field">
+                  <label class="label">Name</label>
+                  <div class="control">
+                    <input class="input" type="text" name="Name" value={this.state.currentLocation.name} />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">Address</label>
+                  <div class="control">
+                    <input class="input" type="text" name="Address" value={this.state.currentLocation.address} />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">Area</label>
+                  <div class="control">
+                    <input class="input" type="text" name="Area" value={this.state.currentLocation.area} />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">City</label>
+                  <div class="control">
+                    <input class="input" type="text" name="City" value={this.state.currentLocation.city} />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">State</label>
+                  <div class="control">
+                    <input class="input" type="text" name="State" value={this.state.currentLocation.state} />
+                  </div>
+                </div>
+                <div class="control">
+                  <button type="submit" class="button is-primary">Submit</button>
+                </div>
+              </form>
             </div>
           </div>}
-        </div>
+        </Rodal>
       </div>
     )
   }

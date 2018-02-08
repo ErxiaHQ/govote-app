@@ -14,6 +14,12 @@
     color: #6a7583;
     font-weight: 300;
 }
+@media (max-width: 768px) {
+    .about_container {
+        padding: 20px;
+        margin-top: 0;
+    }
+}
 @media (min-width: 1024px) {
     .about_container {
         width: 800px;

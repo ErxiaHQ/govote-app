@@ -4,7 +4,6 @@
 }
 .search_bar {
     background-color: #2CA86A;
-    margin-top: 100px;
     text-align: center;
     color: white;
     padding: 50px;
@@ -16,6 +15,7 @@
 .search_bar form {
     width: 500px;
     margin: 20px auto;
+    max-width: 100%;
 }
 .search_results {
     padding: 50px;
@@ -29,12 +29,14 @@
     background-color: white;
     padding: 20px;
     margin-top: 20px;
+    min-height: 170px;
 }
 .search_icon {
     position: absolute;
     right: 12px;
     top: 9px;
     border: none;
+    background: none;
 }
 .search_icon svg g {
     color: #a9a6a6;
@@ -42,6 +44,32 @@
 }
 .search_collection p {
     text-align: left;
+}
+.disqus_section {
+    width: 35%;
+    padding: 30px;
+    display: none;
+}
+.disqus_section__inner {
+    background-color: white;
+    height: 700px;
+    margin-top: 40px;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px 1px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: scroll;
+}
+.disqus_section__close {
+    position: absolute;
+    top: 15px;
+    right: 21px;
+}
+.disqus_section__close a {
+    color: #333;
+}
+.disqus_section__content {
+    margin-top: 40px;
 }
 .loadmore_btn {
     background-color: #2CA86A;
@@ -52,7 +80,110 @@
     margin: 0 auto;
     display: flex;
 }
-
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+.animated-background__header {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: placeHolderShimmer;
+    animation-name: placeHolderShimmer;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: #eeeeee;
+    background: -webkit-gradient(linear, left top, right top, color-stop(8%, #eeeeee), color-stop(18%, #dddddd), color-stop(33%, #eeeeee));
+    background: -webkit-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    -webkit-background-size: 800px 104px;
+    background-size: 800px 104px;
+    height: 20px;
+    width: 380px;
+    position: relative;
+}
+.animated_background__sub__first {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: placeHolderShimmer;
+    animation-name: placeHolderShimmer;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: #eeeeee;
+    background: -webkit-gradient(linear, left top, right top, color-stop(8%, #eeeeee), color-stop(18%, #dddddd), color-stop(33%, #eeeeee));
+    background: -webkit-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    -webkit-background-size: 800px 104px;
+    background-size: 800px 104px;
+    height: 20px;
+    margin-bottom: 20px;
+    width: 380px;
+    position: relative;
+}
+.animated_background__sub__second {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: placeHolderShimmer;
+    animation-name: placeHolderShimmer;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: #eeeeee;
+    background: -webkit-gradient(linear, left top, right top, color-stop(8%, #eeeeee), color-stop(18%, #dddddd), color-stop(33%, #eeeeee));
+    background: -webkit-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    -webkit-background-size: 800px 104px;
+    background-size: 800px 104px;
+    height: 20px;
+    margin-bottom: 20px;
+    width: 280px;
+    position: relative;
+}
+.animated_background__sub__third {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: placeHolderShimmer;
+    animation-name: placeHolderShimmer;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: #eeeeee;
+    background: -webkit-gradient(linear, left top, right top, color-stop(8%, #eeeeee), color-stop(18%, #dddddd), color-stop(33%, #eeeeee));
+    background: -webkit-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    -webkit-background-size: 800px 104px;
+    background-size: 800px 104px;
+    height: 20px;
+    width: 180px;
+    margin-bottom: 20px;
+    position: relative;
+}
+@media (max-width: 768px) {
+    .search_bar {
+        padding: 50px 30px;
+    }
+}
 @media (min-width: 1024px) {
     .search_results {
         width: 80%;

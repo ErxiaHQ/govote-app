@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
-    "build": "preact build",
+    "build": "preact build --template src/template.html",
     "serve": "preact build && preact serve",
     "dev": "preact watch",
     "lint": "eslint src",
@@ -23,18 +23,18 @@
     "identity-obj-proxy": "^3.0.0",
     "if-env": "^1.0.0",
     "jest": "^21.2.1",
+    "preact-async-route": "^2.1.0",
     "preact-cli": "^2.1.0",
     "preact-cli-plugin-env-vars": "^1.1.0",
     "preact-render-spy": "^1.2.1"
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "bulma": "^0.6.2",
     "classnames": "^2.2.5",
-    "moment": "^2.20.1",
     "preact": "^8.2.6",
     "preact-compat": "^3.18.0",
     "preact-router": "^2.5.7",
+    "prop-types": "^15.6.0",
     "rodal": "^1.6.3"
   },
   "jest": {

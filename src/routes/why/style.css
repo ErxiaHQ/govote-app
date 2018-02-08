@@ -36,3 +36,9 @@
         margin: 100px auto 0 auto;
     }
 }
+@media (max-width: 768px) {
+    .why_container {
+        padding: 20px;
+        margin-top: 0;
+    }
+}

@@ -19,16 +19,17 @@ const messages = {
   segs: 'Seconds',
 };
 
+// let home_container = classnames()
+
 let findBtn = classnames(style.find_btn, 'button');
 
 export default class Home extends Component {
-
   render() {
     return (
       <section className={style.home}>
         <div class={style.banner}>
           <div>
-            <h1>finding <br/> PVC collection centers <br/> shouldn't be hard.</h1>
+            <h1>finding <br /> PVC collection centers <br /> shouldn't be hard.</h1>
             <Link className={findBtn} href="/search">Find a PVC Collection Ward</Link>
             <CountDown
               date="2019-02-16T00:00:00+00:00"
@@ -54,8 +55,7 @@ export default class Home extends Component {
           <div className={style.home_content_inner}>
             <h2>WHAT NEXT? 👀</h2>
             <img src="../../assets/queue.svg" alt="what next?" />
-            <p>We vote. This is not the time to leave the future up to chance. Read more about why you need to vote <a
-              href="#">here</a>.</p>
+            <p>We vote. This is not the time to leave the future up to chance. Read more about why you need to vote <Link href="/why">here</Link>.</p>
           </div>
         </div>
       </section>
