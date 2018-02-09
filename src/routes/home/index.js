@@ -29,7 +29,7 @@ export default class Home extends Component {
       <section className={style.home}>
         <div class={style.banner}>
           <div>
-            <h1>finding <br /> PVC collection centers <br /> shouldn't be hard.</h1>
+            <h1>Finding <br /> PVC collection centers <br /> shouldn't be hard.</h1>
             <Link className={findBtn} href="/search">Find a PVC Collection Ward</Link>
             <CountDown
               date="2019-02-16T00:00:00+00:00"
