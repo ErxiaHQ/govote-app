@@ -12,6 +12,9 @@ html, body {
 #disqus_thread {
 	margin-top: 40px;
 }
+.card-footer-item {
+	font-size: 13px;
+}
 * {
 	box-sizing: border-box;
 }
@@ -86,6 +89,11 @@ footer.card-footer {
 		color: #2CA86A;
 		font-size: 60px;
 		font-weight: 800;
+	}
+}
+@media (max-width: 480px) {
+	.rodal-dialog {
+		max-width: 90%;
 	}
 }
 @media (min-width: 481px ) and (max-width: 768px) {
