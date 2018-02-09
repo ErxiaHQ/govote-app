@@ -336,7 +336,7 @@ export default class Search extends Component {
             <div className={style.modal__body}>
               <form action="https://formspree.io/govoteng@gmail.com" method="POST">
                 <input type="hidden" name="_subject" value="Suggestion Edits for a Location" />
-                <input type="hidden" name="_next" value="https://govote.org.ng/search" />
+                <input type="hidden" name="_next" value="https://govote.org.ng/#/search" />
                 <div className="field">
                   <label class="label">Name</label>
                   <div class="control">
@@ -394,7 +394,7 @@ export default class Search extends Component {
             <div className={style.modal__body}>
               <form action="https://formspree.io/govoteng@gmail.com" method="POST">
                 <input type="hidden" name="_subject" value="Deletion for a Location" />
-                <input type="hidden" name="_next" value="https://govote.org.ng/search" />
+                <input type="hidden" name="_next" value="https://govote.org.ng/#/search" />
                 <div className="field">
                   <label class="label">Name</label>
                   <div class="control">
@@ -452,7 +452,7 @@ export default class Search extends Component {
             <div className={style.modal__body}>
               <form action="https://formspree.io/govoteng@gmail.com" method="POST">
                 <input type="hidden" name="_subject" value="New Suggestion submission!" />
-                <input type="hidden" name="_next" value="https://govote.org.ng/search" />
+                <input type="hidden" name="_next" value="https://govote.org.ng/#/search" />
                 <div className="field">
                   <label class="label">Name</label>
                   <div class="control">
