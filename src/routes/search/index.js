@@ -307,6 +307,11 @@ export default class Search extends Component {
             <div className={style.modal__header}>
               <strong>Suggest Edits for {this.state.currentLocation.name}</strong>
             </div>
+            <p>
+              <blockquote>
+                We apologise for any wrong information you see. Please help us clean it up by making edits and suggestions. 😁
+              </blockquote>
+            </p>
             <div className={style.modal__body}>
               <form action="https://formspree.io/govoteng@gmail.com" method="POST">
                 <div className="field">
