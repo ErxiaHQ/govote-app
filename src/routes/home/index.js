@@ -24,6 +24,9 @@ const messages = {
 let findBtn = classnames(style.find_btn, 'button');
 
 export default class Home extends Component {
+  componentWillMount () {
+    mixpanel.track('User visited Home page');
+  }
   render() {
     return (
       <section className={style.home}>

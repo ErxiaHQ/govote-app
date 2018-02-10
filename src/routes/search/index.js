@@ -83,9 +83,9 @@ export default class Search extends Component {
   }
   handleSubmit(event) {
     this.setState({ loading: false });
+    mixpanel.track('User searched for: ' + this.state.value);
     axios.get('https://api.govote.org.ng/search?query=' + this.state.value + '&key=k9ihbvse57fvsujbsvsi5362WE$NFD2')
       .then(res => {
-        console.log(res.data);
         this.setState({ loading: true });
         this.setState({ locations: res.data.data });
         this.setState({ result: true });
@@ -99,7 +99,6 @@ export default class Search extends Component {
     console.log(this.state.currentPage);
   }
   componentWillMount () {
-    // console.log(process.env.NODE_ENV);
     axios.get('https://api.govote.org.ng/search?query=' + ' ' + '&key=k9ihbvse57fvsujbsvsi5362WE$NFD2')
       .then(res => {
         console.log(res.data);
@@ -148,7 +147,7 @@ export default class Search extends Component {
 
         <div className={searchRow}>
           <div className={style.suggest_location}>
-            <a onClick={this.showsuggest()} href="#">Suggest a Location</a>
+            {/*<a onClick={this.showsuggest()} href="#">Suggest a Location</a>*/}
           </div>
           <div className={searchResults}>
             {this.state.loading
