@@ -3,6 +3,9 @@ import style from './style';
 import classnames from 'classnames';
 
 export default class About extends Component {
+  componentWillMount () {
+    mixpanel.track('User visited About page');
+  }
   render() {
     return (
       <div className={style.about_container}>

@@ -6,6 +6,9 @@ import { Link } from 'preact-router/match';
 let findBtn = classnames(style.find_btn, 'button');
 
 export default class Why extends Component {
+  componentWillMount () {
+    mixpanel.track('User visited Why page');
+  }
   render() {
     return (
       <div className={style.why_container}>

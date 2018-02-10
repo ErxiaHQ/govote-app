@@ -2,6 +2,9 @@ import { h, Component } from 'preact';
 import style from './style';
 
 export default class Share extends Component {
+  componentWillMount () {
+    mixpanel.track('User visited Share page');
+  }
   render() {
     return (
       <div className={style.share_container}>
