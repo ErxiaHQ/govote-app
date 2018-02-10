@@ -17,7 +17,7 @@ export default class About extends Component {
 
         <p>The codebase for this interface and the API have been made open source so that we can all contribute. The links to their respective repositories can be found below.</p>
 
-        <p>govote was created by <a href="https://twitter.com/olayinkaos" rel="noopener noreferrer" target="_blank">Olayinka Omole</a> and <a href="https://twitter.com/olayinkaos" rel="noopener noreferrer" target="_blank">Yomi Eluwande</a></p>
+        <p>govote was created by <a href="https://twitter.com/olayinkaos" rel="noopener noreferrer" target="_blank">Olayinka Omole</a> and <a href="https://twitter.com/yomieluwande" rel="noopener noreferrer" target="_blank">Yomi Eluwande</a></p>
         <p><strong>Links and Credits</strong>
           <br />
           <a href="https://github.com/ErxiaHQ/govote-app" rel="noopener noreferrer" target="_blank">govote on GitHub (govote-app)</a> <br />
