@@ -59,6 +59,11 @@ a {
 .search_m_b {
 	margin-bottom: 50px;
 }
+.rodal-dialog {
+	height: 90% !important;
+	overflow: scroll;
+	padding: 30px !important;
+}
 .github-button {
 	margin-right: 15px;
 }

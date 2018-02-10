@@ -328,7 +328,7 @@ export default class Search extends Component {
           </div>
 
         </div>
-        <Rodal height={680} width={500} animation="fade" visible={this.state.visible} onClose={this.hide}>
+        <Rodal width={500} animation="fade" visible={this.state.visible} onClose={this.hide}>
           {this.state.currentLocation !== null && <div>
             <div className={style.modal__header}>
               <strong>Suggest Edits for {this.state.currentLocation.name}</strong>
@@ -391,7 +391,7 @@ export default class Search extends Component {
             </div>
           </div>}
         </Rodal>
-        <Rodal height={680} width={500} animation="fade" visible={this.state.visibledelete} onClose={this.hidedeletion}>
+        <Rodal width={500} animation="fade" visible={this.state.visibledelete} onClose={this.hidedeletion}>
           {this.state.currentLocation !== null && <div>
             <div className={style.modal__header}>
               <strong>Suggest Deletion for {this.state.currentLocation.name}</strong>
@@ -449,7 +449,7 @@ export default class Search extends Component {
             </div>
           </div>}
         </Rodal>
-        <Rodal height={680} width={500} animation="fade" visible={this.state.visiblesuggest} onClose={this.hidesuggest}>
+        <Rodal width={500} animation="fade" visible={this.state.visiblesuggest} onClose={this.hidesuggest}>
           <div>
             <div className={style.modal__header}>
               <strong>Suggest A New Location</strong>
