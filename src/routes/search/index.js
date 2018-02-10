@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import style from './style';
-import DisqusThread from '../../components/disqus/DisqusThread';
+// import DisqusThread from '../../components/disqus/DisqusThread';
 import axios from 'axios';
 import classnames from 'classnames';
 import Rodal from 'rodal';
@@ -16,6 +16,8 @@ export default class Search extends Component {
       loading: false,
       locations: [],
       visible: false,
+      visiblesuggest: false,
+      visibledelete: false,
       showdisqus: false,
       currentLocation: null
     }
@@ -23,17 +25,31 @@ export default class Search extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.show = this.show.bind(this);
+    this.showdeletion = this.showdeletion.bind(this);
+    this.showsuggest = this.showsuggest.bind(this);
     this.hide = this.hide.bind(this);
+    this.hidedeletion = this.hidedeletion.bind(this);
+    this.hidesuggest = this.hidesuggest.bind(this);
     this.showDisqus = this.showDisqus.bind(this);
     this.closeDisqus = this.closeDisqus.bind(this);
   }
-  // noToString (val) {
-  //
-  // }
   show(val) {
     return ( e => {
       e.preventDefault();
       this.setState({ visible: true });
+      this.setState({ currentLocation: val });
+    });
+  }
+  showsuggest() {
+    return ( e => {
+      e.preventDefault();
+      this.setState({ visiblesuggest: true });
+    });
+  }
+  showdeletion(val) {
+    return ( e => {
+      e.preventDefault();
+      this.setState({ visibledelete: true });
       this.setState({ currentLocation: val });
     });
   }
@@ -54,7 +70,13 @@ export default class Search extends Component {
   hide() {
     this.setState({ visible: false });
     this.setState({ currentLocation: null });
-
+  }
+  hidesuggest() {
+    this.setState({ visiblesuggest: false });
+  }
+  hidedeletion() {
+    this.setState({ visibledelete: false });
+    this.setState({ currentLocation: null });
   }
   handleChange(event) {
     this.setState({ value: event.target.value });
@@ -125,6 +147,9 @@ export default class Search extends Component {
         </div>
 
         <div className={searchRow}>
+          <div className={style.suggest_location}>
+            <a onClick={this.showsuggest()} href="#">Suggest a Location</a>
+          </div>
           <div className={searchResults}>
             {this.state.loading
               ? <div>
@@ -142,7 +167,8 @@ export default class Search extends Component {
                       <footer class="card-footer">
                         { item.latitude || item.longitude ? <a href={'https://www.google.com/maps/?q=' + item.latitude + ',' + item.longitude} class="card-footer-item" target="_blank">View on Map</a> : ''}
                         <a onClick={this.show(item)} href="#" class="card-footer-item">Suggest Edits</a>
-                        <a onClick={this.showDisqus(item)} href="#" class="card-footer-item">Discuss</a>
+                        <a onClick={this.showdeletion(item)} href="#" class="card-footer-item">Suggest Deletion</a>
+                        {/*<a onClick={this.showDisqus(item)} href="#" class="card-footer-item">Discuss</a>*/}
                       </footer>
                     </div>
                   ))}
@@ -296,13 +322,13 @@ export default class Search extends Component {
                 <p>City: {this.state.currentLocation.city}</p>
                 <p>State: {this.state.currentLocation.state}</p>
 
-                <DisqusThread id={this.state.currentLocation.id + ''} title={this.state.currentLocation.name} path="/search" />
+                {/*<DisqusThread id={this.state.currentLocation.id + ''} title={this.state.currentLocation.name} path="/search" />*/}
               </div>}
             </div>
           </div>
 
         </div>
-        <Rodal height={550} width={500} animation="fade" visible={this.state.visible} onClose={this.hide}>
+        <Rodal height={680} width={500} animation="fade" visible={this.state.visible} onClose={this.hide}>
           {this.state.currentLocation !== null && <div>
             <div className={style.modal__header}>
               <strong>Suggest Edits for {this.state.currentLocation.name}</strong>
@@ -314,34 +340,48 @@ export default class Search extends Component {
             </p>
             <div className={style.modal__body}>
               <form action="https://formspree.io/govoteng@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="Suggestion Edits for a Location" />
+                <input type="hidden" name="_next" value="https://govote.org.ng/#/search" />
                 <div className="field">
                   <label class="label">Name</label>
                   <div class="control">
-                    <input class="input" type="text" name="Name" value={this.state.currentLocation.name} />
+                    <input class="input" type="text" name="Name" value={this.state.currentLocation.name}  />
                   </div>
                 </div>
                 <div className="field">
                   <label class="label">Address</label>
                   <div class="control">
-                    <input class="input" type="text" name="Address" value={this.state.currentLocation.address} />
+                    <input class="input" type="text" name="Address" value={this.state.currentLocation.address}  />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">Latitude</label>
+                  <div class="control">
+                    <input class="input" type="text" name="Latitude" value={this.state.currentLocation.latitude}  />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">Longitude</label>
+                  <div class="control">
+                    <input class="input" type="text" name="Longitude" value={this.state.currentLocation.longitude}  />
                   </div>
                 </div>
                 <div className="field">
                   <label class="label">Area</label>
                   <div class="control">
-                    <input class="input" type="text" name="Area" value={this.state.currentLocation.area} />
+                    <input class="input" type="text" name="Area" value={this.state.currentLocation.area}  />
                   </div>
                 </div>
                 <div className="field">
                   <label class="label">City</label>
                   <div class="control">
-                    <input class="input" type="text" name="City" value={this.state.currentLocation.city} />
+                    <input class="input" type="text" name="City" value={this.state.currentLocation.city}  />
                   </div>
                 </div>
                 <div className="field">
                   <label class="label">State</label>
                   <div class="control">
-                    <input class="input" type="text" name="State" value={this.state.currentLocation.state} />
+                    <input class="input" type="text" name="State" value={this.state.currentLocation.state}  />
                   </div>
                 </div>
                 <div class="control">
@@ -350,6 +390,122 @@ export default class Search extends Component {
               </form>
             </div>
           </div>}
+        </Rodal>
+        <Rodal height={680} width={500} animation="fade" visible={this.state.visibledelete} onClose={this.hidedeletion}>
+          {this.state.currentLocation !== null && <div>
+            <div className={style.modal__header}>
+              <strong>Suggest Deletion for {this.state.currentLocation.name}</strong>
+            </div>
+            <div className={style.modal__body}>
+              <form action="https://formspree.io/govoteng@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="Deletion for a Location" />
+                <input type="hidden" name="_next" value="https://govote.org.ng/#/search" />
+                <div className="field">
+                  <label class="label">Name</label>
+                  <div class="control">
+                    <input class="input" type="text" name="Name" value={this.state.currentLocation.name}  />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">Address</label>
+                  <div class="control">
+                    <input class="input" type="text" name="Address" value={this.state.currentLocation.address}  />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">Latitude</label>
+                  <div class="control">
+                    <input class="input" type="text" name="Latitude" value={this.state.currentLocation.latitude} required />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">Longitude</label>
+                  <div class="control">
+                    <input class="input" type="text" name="Longitude" value={this.state.currentLocation.longitude} required />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">Area</label>
+                  <div class="control">
+                    <input class="input" type="text" name="Area" value={this.state.currentLocation.area}  />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">City</label>
+                  <div class="control">
+                    <input class="input" type="text" name="City" value={this.state.currentLocation.city}  />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">State</label>
+                  <div class="control">
+                    <input class="input" type="text" name="State" value={this.state.currentLocation.state}  />
+                  </div>
+                </div>
+                <div class="control">
+                  <button type="submit" class="button is-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>}
+        </Rodal>
+        <Rodal height={680} width={500} animation="fade" visible={this.state.visiblesuggest} onClose={this.hidesuggest}>
+          <div>
+            <div className={style.modal__header}>
+              <strong>Suggest A New Location</strong>
+            </div>
+            <div className={style.modal__body}>
+              <form action="https://formspree.io/govoteng@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="New Suggestion submission!" />
+                <input type="hidden" name="_next" value="https://govote.org.ng/#/search" />
+                <div className="field">
+                  <label class="label">Name</label>
+                  <div class="control">
+                    <input class="input" type="text" name="Name" placeholder="Location Name"  />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">Address</label>
+                  <div class="control">
+                    <input class="input" type="text" name="Address" placeholder="Location Address"  />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">Latitude</label>
+                  <div class="control">
+                    <input class="input" type="text" name="Latitude" placeholder="Location Latitude"  />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">Longitude</label>
+                  <div class="control">
+                    <input class="input" type="text" name="Longitude" placeholder="Location Longitude"  />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">Area</label>
+                  <div class="control">
+                    <input class="input" type="text" name="Area" placeholder="Location Area"  />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">City</label>
+                  <div class="control">
+                    <input class="input" type="text" name="City" placeholder="Location City"  />
+                  </div>
+                </div>
+                <div className="field">
+                  <label class="label">State</label>
+                  <div class="control">
+                    <input class="input" type="text" name="State" placeholder="Location State"  />
+                  </div>
+                </div>
+                <div class="control">
+                  <button type="submit" class="button is-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </Rodal>
       </div>
     )

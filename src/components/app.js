@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 import AsyncRoute from 'preact-async-route';
-
+import createHashHistory from 'history/createHashHistory';
 
 import Header from './header';
 import Footer from './footer';
@@ -30,7 +30,7 @@ export default class App extends Component {
 		return (
 			<div id="app">
 				<Header />
-				<Router onChange={this.handleRoute}>
+				<Router history={createHashHistory()} onChange={this.handleRoute}>
 					<AsyncRoute path="/" component={Home} />
 					<AsyncRoute path="/about" component={About} />
           <AsyncRoute path="/search" component={Search} />
