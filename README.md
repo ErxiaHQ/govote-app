@@ -23,4 +23,4 @@ If you use https, use this instead
 
 The #1 contribution you could make is to share, and tell people about govote.
 
-View the Contribution Guide for how to contribute.
+View the [Contribution Guide](https://github.com/ErxiaHQ/govote-app/blob/development/CONTRIBUTING.md) for how to contribute.
