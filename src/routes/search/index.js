@@ -147,7 +147,7 @@ export default class Search extends Component {
 
         <div className={searchRow}>
           <div className={style.suggest_location}>
-            {/*<a onClick={this.showsuggest()} href="#">Suggest a Location</a>*/}
+            <a onClick={this.showsuggest()} href="#">Suggest a Location</a>
           </div>
           <div className={searchResults}>
             {this.state.loading
@@ -327,7 +327,7 @@ export default class Search extends Component {
           </div>
 
         </div>
-        <Rodal width={500} animation="fade" visible={this.state.visible} onClose={this.hide}>
+        <Rodal width={500} animation="fade" visible={this.state.visible} onClose={this.hide}  showCloseButton={true} closeOnEsc={true}>
           {this.state.currentLocation !== null && <div>
             <div className={style.modal__header}>
               <strong>Suggest Edits for {this.state.currentLocation.name}</strong>
@@ -390,7 +390,7 @@ export default class Search extends Component {
             </div>
           </div>}
         </Rodal>
-        <Rodal width={500} animation="fade" visible={this.state.visibledelete} onClose={this.hidedeletion}>
+        <Rodal width={500} animation="fade" visible={this.state.visibledelete} onClose={this.hidedeletion} showCloseButton={true} closeOnEsc={true}>
           {this.state.currentLocation !== null && <div>
             <div className={style.modal__header}>
               <strong>Suggest Deletion for {this.state.currentLocation.name}</strong>
@@ -448,7 +448,7 @@ export default class Search extends Component {
             </div>
           </div>}
         </Rodal>
-        <Rodal width={500} animation="fade" visible={this.state.visiblesuggest} onClose={this.hidesuggest}>
+        <Rodal width={500} animation="fade" visible={this.state.visiblesuggest} onClose={this.hidesuggest} showCloseButton={true} closeOnEsc={true}>
           <div>
             <div className={style.modal__header}>
               <strong>Suggest A New Location</strong>
