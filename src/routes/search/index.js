@@ -147,7 +147,7 @@ export default class Search extends Component {
 
         <div className={searchRow}>
           <div className={style.suggest_location}>
-            {/*<a onClick={this.showsuggest()} href="#">Suggest a Location</a>*/}
+            <a onClick={this.showsuggest()} href="#">Suggest a Location</a>
           </div>
           <div className={searchResults}>
             {this.state.loading
