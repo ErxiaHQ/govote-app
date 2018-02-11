@@ -33,7 +33,7 @@ export default class App extends Component {
 				<Router history={createHashHistory()} onChange={this.handleRoute}>
 					<AsyncRoute path="/" component={Home} />
 					<AsyncRoute path="/about" component={About} />
-          <AsyncRoute path="/search" component={Search} />
+          <AsyncRoute path="/search" component={Search} replace />
           <AsyncRoute path="/share" component={Share} />
 					<AsyncRoute path="/why" component={Why} />
 				</Router>
