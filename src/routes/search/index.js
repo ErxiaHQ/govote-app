@@ -102,7 +102,7 @@ export default class Search extends Component {
   }
   componentWillMount () {
     let { query } = this.props.matches;
-    query = !query ? '' : query;
+    query = !query ? ' ' : query;
     axios.get('https://api.govote.org.ng/search?query=' + query + '&key=k9ihbvse57fvsujbsvsi5362WE$NFD2')
       .then(res => {
         console.log(res.data);
