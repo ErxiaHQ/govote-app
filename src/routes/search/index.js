@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import { route } from 'preact-router';
 import style from './style';
 // import DisqusThread from '../../components/disqus/DisqusThread';
 import axios from 'axios';
@@ -89,6 +90,7 @@ export default class Search extends Component {
         this.setState({ loading: true });
         this.setState({ locations: res.data.data });
         this.setState({ result: true });
+        route(`${this.props.path}?query=${this.state.value}`);
       })
       .catch(err => {
         console.error(err);
@@ -99,9 +101,12 @@ export default class Search extends Component {
     console.log(this.state.currentPage);
   }
   componentWillMount () {
-    axios.get('https://api.govote.org.ng/search?query=' + ' ' + '&key=k9ihbvse57fvsujbsvsi5362WE$NFD2')
+    let { query } = this.props.matches;
+    query = !query ? '' : query;
+    axios.get('https://api.govote.org.ng/search?query=' + query + '&key=k9ihbvse57fvsujbsvsi5362WE$NFD2')
       .then(res => {
         console.log(res.data);
+        this.setState({ value: query });
         this.setState({ loading: true });
         this.setState({ locations: res.data.data });
       })
