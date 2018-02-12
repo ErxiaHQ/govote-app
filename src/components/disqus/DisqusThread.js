@@ -1,10 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { h, Component } from 'preact';
 
 const SHORTNAME = 'govote-1';
-const WEBSITE_URL = 'https://govote.org.ng';
 
-function renderDisqus() {
+function renderDisqus () {
   if (window.DISQUS === undefined) {
     let script = document.createElement('script');
     script.async = true;
@@ -15,35 +14,34 @@ function renderDisqus() {
   }
 }
 
-class DisqusThread extends React.Component{
-
+class DisqusThread extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     path: PropTypes.string.isRequired
   };
 
-
-  shouldComponentUpdate(nextProps) {
-    return this.props.id !== nextProps.id ||
+  shouldComponentUpdate (nextProps) {
+    return (
+      this.props.id !== nextProps.id ||
       this.props.title !== nextProps.title ||
-      this.props.path !== nextProps.path;
+      this.props.path !== nextProps.path
+    );
   }
 
-  componentDidMount() {
+  componentDidMount () {
     renderDisqus();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate () {
     renderDisqus();
   }
 
-  render() {
+  render () {
     let { id, title, path, ...other } = this.props;
 
-    return <div {...other} id="disqus_thread" />;
+    return <div {...other} id='disqus_thread' />;
   }
-
 }
 
 export default DisqusThread;
