@@ -11,7 +11,7 @@ export default class About extends Component {
       <div className={style.about_container}>
         <h1>About<br /> govote 🙏🏿</h1>
 
-        <p>govote was built as to make sure that the first hurdle concerning the elections can be cleared; registering to vote.</p>
+        <p>govote was built to make sure that the first hurdle concerning the elections can be cleared; registering to vote.</p>
 
         <p>The existing data for the PVC collection wards were scraped from the internet and converted into an API. We recognize that some of these data might not be correct or outdated so we need help with corrections, additions and verifications.</p>
 
