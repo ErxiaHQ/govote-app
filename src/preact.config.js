@@ -1,4 +1,4 @@
-const envVars = require('preact-cli-plugin-env-vars');
+const envVars = require('preact-cli-plugin-env-vars')
 
 /**
  * Function that mutates original webpack config.
@@ -9,10 +9,11 @@ const envVars = require('preact-cli-plugin-env-vars');
  * @param {WebpackConfigHelpers} helpers - object with useful helpers when working with config.
  **/
 export default (config, env, helpers) => {
-  envVars(config);
+  envVars(config)
+
   /** you can change config here **/
   config.resolve.alias = {
-    'react': 'preact-compat',
-      'react-dom': 'preact-compat'
+    react: 'preact-compat',
+    'react-dom': 'preact-compat'
   }
 }

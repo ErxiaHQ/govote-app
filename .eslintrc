@@ -1,0 +1,6 @@
+{
+  "extends": ["standard", "standard-preact"],
+  "rules": {
+    "semi": 0
+  }
+}
