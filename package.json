@@ -5,21 +5,25 @@
   "license": "MIT",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
-    "build": "preact build --template src/template.html",
+    "build": "preact build --template src/template.html --no-prerender",
     "serve": "preact build && preact serve",
-    "dev": "preact watch",
+    "dev": "preact watch --template src/template.html",
     "lint": "eslint src",
     "test": "jest ./tests"
-  },
-  "eslintConfig": {
-    "extends": "eslint-config-synacor"
   },
   "eslintIgnore": [
     "build/*"
   ],
   "devDependencies": {
     "eslint": "^4.9.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-config-standard-preact": "^1.1.6",
     "eslint-config-synacor": "^2.0.2",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-react": "^7.6.1",
+    "eslint-plugin-standard": "^3.0.1",
     "identity-obj-proxy": "^3.0.0",
     "if-env": "^1.0.0",
     "jest": "^21.2.1",

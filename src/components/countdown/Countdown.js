@@ -1,7 +1,5 @@
-import React, {
-  Component,
-  PropTypes,
-} from 'react';
+import { PropTypes } from 'react';
+import { h, Component } from 'preact';
 
 class CountDown extends Component {
   static displayName = 'Simple countDown';
@@ -13,7 +11,7 @@ class CountDown extends Component {
     hours: PropTypes.string,
     mins: PropTypes.string,
     segs: PropTypes.string,
-    onEnd: PropTypes.func,
+    onEnd: PropTypes.func
   };
   static defaultProps = {
     years: 'Year',
@@ -21,23 +19,22 @@ class CountDown extends Component {
     className: 'CountDown',
     days: {
       plural: 'Days',
-      singular: 'Day',
+      singular: 'Day'
     },
     hours: 'Hours',
     mins: 'Min',
     segs: 'Seg',
-    onEnd: () => {},
-
+    onEnd: () => {}
   };
   state = {
     years: 0,
     days: 0,
     hours: 0,
     min: 0,
-    sec: 0,
+    sec: 0
   };
-  componentDidMount() {
-    this.interval = setInterval(()=> {
+  componentDidMount () {
+    this.interval = setInterval(() => {
       const date = this.getDateData(this.props.date);
       if (date) {
         this.setState(date);
@@ -47,18 +44,17 @@ class CountDown extends Component {
       }
     }, 1000);
   }
-  componentWillMount() {
+  componentWillMount () {
     const date = this.getDateData(this.props.date);
     if (date) {
       this.setState(date);
     }
-
   }
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.stop();
   }
-  getDateData(endDate) {
-    let diff = (Date.parse(new Date(endDate)) - Date.parse(new Date)) / 1000;
+  getDateData (endDate) {
+    let diff = (Date.parse(new Date(endDate)) - Date.parse(new Date())) / 1000;
 
     if (diff <= 0) {
       return false;
@@ -70,10 +66,10 @@ class CountDown extends Component {
       hours: 0,
       min: 0,
       sec: 0,
-      millisec: 0,
+      millisec: 0
     };
 
-    if (diff >= (365.25 * 86400)) {
+    if (diff >= 365.25 * 86400) {
       timeLeft.years = Math.floor(diff / (365.25 * 86400));
       diff -= timeLeft.years * 365.25 * 86400;
     }
@@ -92,7 +88,7 @@ class CountDown extends Component {
     timeLeft.sec = diff;
     return timeLeft;
   }
-  render() {
+  render () {
     const countDown = this.state;
     let days;
     if (countDown.days === 1) {
@@ -102,33 +98,47 @@ class CountDown extends Component {
     }
     return (
       <div className={this.props.className}>
-        {(countDown.years > 0) &&
-        <div className={`${this.props.className}-col is-day`}>
-          <p><strong>{this.leadingZeros(countDown.years)}</strong><span>{this.props.years}</span></p>
-        </div>
-        }
-        {(countDown.days > 0) &&
-        <div className={`${this.props.className}-col is-day`}>
-          <p><strong>{this.leadingZeros(countDown.days)}</strong><span>{days}</span></p>
-        </div>
-        }
+        {countDown.years > 0 && (
+          <div className={`${this.props.className}-col is-day`}>
+            <p>
+              <strong>{this.leadingZeros(countDown.years)}</strong>
+              <span>{this.props.years}</span>
+            </p>
+          </div>
+        )}
+        {countDown.days > 0 && (
+          <div className={`${this.props.className}-col is-day`}>
+            <p>
+              <strong>{this.leadingZeros(countDown.days)}</strong>
+              <span>{days}</span>
+            </p>
+          </div>
+        )}
         <div className={`${this.props.className}-col is-hour`}>
-          <p><strong>{this.leadingZeros(countDown.hours)}</strong><span>{this.props.hours}</span></p>
+          <p>
+            <strong>{this.leadingZeros(countDown.hours)}</strong>
+            <span>{this.props.hours}</span>
+          </p>
         </div>
         <div className={`${this.props.className}-col is-min`}>
-          <p><strong>{this.leadingZeros(countDown.min)}</strong><span>{this.props.mins}</span></p>
+          <p>
+            <strong>{this.leadingZeros(countDown.min)}</strong>
+            <span>{this.props.mins}</span>
+          </p>
         </div>
         <div className={`${this.props.className}-col is-seg`}>
-          <p><strong>{this.leadingZeros(countDown.sec)}</strong><span>{this.props.segs}</span></p>
+          <p>
+            <strong>{this.leadingZeros(countDown.sec)}</strong>
+            <span>{this.props.segs}</span>
+          </p>
         </div>
       </div>
     );
   }
-  stop() {
+  stop () {
     clearInterval(this.interval);
   }
-  leadingZeros(num, length = null) {
-
+  leadingZeros (num, length = null) {
     let length_ = length;
     let num_ = num;
     if (length_ === null) {
@@ -140,6 +150,6 @@ class CountDown extends Component {
     }
     return num_;
   }
-};
+}
 
 export default CountDown;
