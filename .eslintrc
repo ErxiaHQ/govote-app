@@ -1,6 +1,9 @@
 {
   "extends": ["standard", "standard-preact"],
   "rules": {
-    "semi": 0
+    "semi": 0,
+    "indent": ["error", "tab"],
+    "no-tabs": 0,
+    "react/jsx-indent": 0
   }
 }
