@@ -3,8 +3,9 @@ import { route } from 'preact-router'
 import axios from 'axios'
 import classnames from 'classnames'
 import Rodal from 'rodal'
-import style from './style'
-import Placeholder from '../../components/placeholders/'
+import style from './style.css'
+import Placeholder from '../../components/placeholder/'
+import Location from '../../components/location'
 // import DisqusThread from '../../components/disqus/DisqusThread';
 
 import 'rodal/lib/rodal.css'
@@ -115,16 +116,15 @@ export default class Search extends Component {
 			})
 	}
 
-	render () {
+	render ({}, { result, value, loading, locations, visible, visiblesuggest, visibledelete, showdisqus, currentLocation }) {
 		let searchResults = classnames(style.search_results, {
-			searchresults_left: this.state.showdisqus
+			searchresults_left: showdisqus
 		})
 		let searchRow = classnames({
-			searchpage__row: this.state.showdisqus
+			searchpage__row: showdisqus
 		})
-
 		let disqusSection = classnames(style.disqus_section, {
-			disqus_show: this.state.showdisqus
+			disqus_show: showdisqus
 		})
 		return (
 			<div className={style.search}>
@@ -133,7 +133,7 @@ export default class Search extends Component {
 					<form onSubmit={this.handleSubmit}>
 						<div className='field'>
 							<div className='control has-icons-right'>
-								<input type='text' onChange={this.handleChange} value={this.state.value} className='input is-primary' placeholder='Search Locations: Lekki, Badagry, Epe e.t.c' />
+								<input type='text' onChange={this.handleChange} value={value} className='input is-primary' placeholder='Search Locations: Lekki, Badagry, Epe e.t.c' />
 								<button type='submit' className={style.search_icon}>
 									<svg width='15px' viewBox='0 0 136 137' version='1.1' xmlns='http://www.w3.org/2000/svg'>
 										<title>search19</title>
@@ -156,18 +156,14 @@ export default class Search extends Component {
 						<a onClick={this.showsuggest()} href='#'>Suggest a Location</a>
 					</div>
 					<div className={searchResults}>
-						{this.state.loading
+						{loading
 							? <div>
-								{this.state.result && <p>{this.state.locations.length} search results.</p>}
+								{result && <p>{locations.length} search results.</p>}
 								<div className='columns is-multiline'>
-									{this.state.locations.map((item, i) => (
+									{locations.map((item, i) => (
 										<div className='column is-half'>
 											<div className={style.search_collection}>
-												<p>{item.name}</p>
-												<p><strong>Address</strong>: {item.address}</p>
-												<p><strong>Area</strong>: {item.area}</p>
-												{item.city && <p><strong>City</strong>: {item.city}</p>}
-												<p><strong>State</strong>: {item.state} State</p>
+												<Location name={item.name} address={item.address} area={item.area} city={item.city} state={item.state} />
 											</div>
 											<footer class='card-footer'>
 												{ item.latitude || item.longitude ? <a href={'https://www.google.com/maps/?q=' + item.latitude + ',' + item.longitude} class='card-footer-item' target='_blank'>View on Map</a> : ''}
@@ -180,7 +176,7 @@ export default class Search extends Component {
 								</div>
 
 								{/* <button onClick={this.loadMore} className={style.loadmore_btn}>Load More</button> */}
-							</div> : <Placeholder/>
+							</div> : <Placeholder />
 						}
 					</div>
 
@@ -189,22 +185,23 @@ export default class Search extends Component {
 							<div className={style.disqus_section__close}>
 								<a onClick={this.closeDisqus()} href='#'>X</a>
 							</div>
-							{this.state.currentLocation !== null && <div className={style.disqus_section__content}>
-								<p><strong>{this.state.currentLocation.name}</strong></p>
-								<p>Address: {this.state.currentLocation.address}</p>
-								<p>Area: {this.state.currentLocation.area}</p>
-								<p>City: {this.state.currentLocation.city}</p>
-								<p>State: {this.state.currentLocation.state}</p>
-								{/* <DisqusThread id={this.state.currentLocation.id + ''} title={this.state.currentLocation.name} path="/search" /> */}
+							{currentLocation !== null && <div className={style.disqus_section__content}>
+								<p><strong>{currentLocation.name}</strong></p>
+								<p>Address: {currentLocation.address}</p>
+								<p>Area: {currentLocation.area}</p>
+								<p>City: {currentLocation.city}</p>
+								<p>State: {currentLocation.state}</p>
+								{/* <DisqusThread id={currentLocation.id + ''} title={currentLocation.name} path="/search" /> */}
 							</div>}
 						</div>
 					</div>
 
 				</div>
-				<Rodal width={500} animation='fade' visible={this.state.visible} onClose={this.hide} showCloseButton closeOnEsc>
-					{this.state.currentLocation !== null && <div>
+
+				<Rodal width={500} animation='fade' visible={visible} onClose={this.hide} showCloseButton closeOnEsc>
+					{currentLocation !== null && <div>
 						<div className={style.modal__header}>
-							<strong>Suggest Edits for {this.state.currentLocation.name}</strong>
+							<strong>Suggest Edits for {currentLocation.name}</strong>
 						</div>
 						<p>
 							<blockquote>
@@ -218,43 +215,43 @@ export default class Search extends Component {
 								<div className='field'>
 									<label class='label'>Name</label>
 									<div class='control'>
-										<input class='input' type='text' name='Name' value={this.state.currentLocation.name} />
+										<input class='input' type='text' name='Name' value={currentLocation.name} />
 									</div>
 								</div>
 								<div className='field'>
 									<label class='label'>Address</label>
 									<div class='control'>
-										<input class='input' type='text' name='Address' value={this.state.currentLocation.address} />
+										<input class='input' type='text' name='Address' value={currentLocation.address} />
 									</div>
 								</div>
 								<div className='field'>
 									<label class='label'>Latitude</label>
 									<div class='control'>
-										<input class='input' type='text' name='Latitude' value={this.state.currentLocation.latitude} />
+										<input class='input' type='text' name='Latitude' value={currentLocation.latitude} />
 									</div>
 								</div>
 								<div className='field'>
 									<label class='label'>Longitude</label>
 									<div class='control'>
-										<input class='input' type='text' name='Longitude' value={this.state.currentLocation.longitude} />
+										<input class='input' type='text' name='Longitude' value={currentLocation.longitude} />
 									</div>
 								</div>
 								<div className='field'>
 									<label class='label'>Area</label>
 									<div class='control'>
-										<input class='input' type='text' name='Area' value={this.state.currentLocation.area} />
+										<input class='input' type='text' name='Area' value={currentLocation.area} />
 									</div>
 								</div>
 								<div className='field'>
 									<label class='label'>City</label>
 									<div class='control'>
-										<input class='input' type='text' name='City' value={this.state.currentLocation.city} />
+										<input class='input' type='text' name='City' value={currentLocation.city} />
 									</div>
 								</div>
 								<div className='field'>
 									<label class='label'>State</label>
 									<div class='control'>
-										<input class='input' type='text' name='State' value={this.state.currentLocation.state} />
+										<input class='input' type='text' name='State' value={currentLocation.state} />
 									</div>
 								</div>
 								<div class='control'>
@@ -264,10 +261,10 @@ export default class Search extends Component {
 						</div>
 					</div>}
 				</Rodal>
-				<Rodal width={500} animation='fade' visible={this.state.visibledelete} onClose={this.hidedeletion} showCloseButton closeOnEsc>
-					{this.state.currentLocation !== null && <div>
+				<Rodal width={500} animation='fade' visible={visibledelete} onClose={this.hidedeletion} showCloseButton closeOnEsc>
+					{currentLocation !== null && <div>
 						<div className={style.modal__header}>
-							<strong>Suggest Deletion for {this.state.currentLocation.name}</strong>
+							<strong>Suggest Deletion for {currentLocation.name}</strong>
 						</div>
 						<div className={style.modal__body}>
 							<form action='https://formspree.io/govoteng@gmail.com' method='POST'>
@@ -276,43 +273,43 @@ export default class Search extends Component {
 								<div className='field'>
 									<label class='label'>Name</label>
 									<div class='control'>
-										<input class='input' type='text' name='Name' value={this.state.currentLocation.name} />
+										<input class='input' type='text' name='Name' value={currentLocation.name} />
 									</div>
 								</div>
 								<div className='field'>
 									<label class='label'>Address</label>
 									<div class='control'>
-										<input class='input' type='text' name='Address' value={this.state.currentLocation.address} />
+										<input class='input' type='text' name='Address' value={currentLocation.address} />
 									</div>
 								</div>
 								<div className='field'>
 									<label class='label'>Latitude</label>
 									<div class='control'>
-										<input class='input' type='text' name='Latitude' value={this.state.currentLocation.latitude} required />
+										<input class='input' type='text' name='Latitude' value={currentLocation.latitude} required />
 									</div>
 								</div>
 								<div className='field'>
 									<label class='label'>Longitude</label>
 									<div class='control'>
-										<input class='input' type='text' name='Longitude' value={this.state.currentLocation.longitude} required />
+										<input class='input' type='text' name='Longitude' value={currentLocation.longitude} required />
 									</div>
 								</div>
 								<div className='field'>
 									<label class='label'>Area</label>
 									<div class='control'>
-										<input class='input' type='text' name='Area' value={this.state.currentLocation.area} />
+										<input class='input' type='text' name='Area' value={currentLocation.area} />
 									</div>
 								</div>
 								<div className='field'>
 									<label class='label'>City</label>
 									<div class='control'>
-										<input class='input' type='text' name='City' value={this.state.currentLocation.city} />
+										<input class='input' type='text' name='City' value={currentLocation.city} />
 									</div>
 								</div>
 								<div className='field'>
 									<label class='label'>State</label>
 									<div class='control'>
-										<input class='input' type='text' name='State' value={this.state.currentLocation.state} />
+										<input class='input' type='text' name='State' value={currentLocation.state} />
 									</div>
 								</div>
 								<div class='control'>
@@ -322,7 +319,7 @@ export default class Search extends Component {
 						</div>
 					</div>}
 				</Rodal>
-				<Rodal width={500} animation='fade' visible={this.state.visiblesuggest} onClose={this.hidesuggest} showCloseButton closeOnEsc>
+				<Rodal width={500} animation='fade' visible={visiblesuggest} onClose={this.hidesuggest} showCloseButton closeOnEsc>
 					<div>
 						<div className={style.modal__header}>
 							<strong>Suggest A New Location</strong>
@@ -371,6 +368,12 @@ export default class Search extends Component {
 									<label class='label'>State</label>
 									<div class='control'>
 										<input class='input' type='text' name='State' placeholder='Location State' />
+									</div>
+								</div>
+								<div className='field'>
+									<label class='label'>Why?</label>
+									<div class='control'>
+										<textarea class='textarea' name='Why' placeholder='Enter a reason for deletion' />
 									</div>
 								</div>
 								<div class='control'>
