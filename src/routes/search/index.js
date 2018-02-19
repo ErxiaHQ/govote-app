@@ -191,13 +191,13 @@ export default class Search extends Component {
 								<p>Area: {currentLocation.area}</p>
 								<p>City: {currentLocation.city}</p>
 								<p>State: {currentLocation.state}</p>
-
 								{/* <DisqusThread id={currentLocation.id + ''} title={currentLocation.name} path="/search" /> */}
 							</div>}
 						</div>
 					</div>
 
 				</div>
+
 				<Rodal width={500} animation='fade' visible={visible} onClose={this.hide} showCloseButton closeOnEsc>
 					{currentLocation !== null && <div>
 						<div className={style.modal__header}>
@@ -312,12 +312,6 @@ export default class Search extends Component {
 										<input class='input' type='text' name='State' value={currentLocation.state} />
 									</div>
 								</div>
-								<div className='field'>
-									<label class='label'>Why?</label>
-									<div class='control'>
-										<textarea class='textarea' name='Why' placeholder='Enter a reason for deletion.' />
-									</div>
-								</div>
 								<div class='control'>
 									<button type='submit' class='button is-primary'>Submit</button>
 								</div>
@@ -374,6 +368,12 @@ export default class Search extends Component {
 									<label class='label'>State</label>
 									<div class='control'>
 										<input class='input' type='text' name='State' placeholder='Location State' />
+									</div>
+								</div>
+								<div className='field'>
+									<label class='label'>Why?</label>
+									<div class='control'>
+										<textarea class='textarea' name='Why' placeholder='Enter a reason for deletion' />
 									</div>
 								</div>
 								<div class='control'>
