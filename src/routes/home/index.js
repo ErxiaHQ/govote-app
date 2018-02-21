@@ -1,8 +1,9 @@
 import { h, Component } from 'preact'
 import style from './style'
 import classnames from 'classnames'
-import CountDown from '../../components/countdown/Countdown'
+import Helmet from 'preact-helmet'
 import { Link } from 'preact-router/match'
+import CountDown from '../../components/countdown/Countdown'
 
 function finish () {
   console.log('Countdown finished')
@@ -25,11 +26,14 @@ let findBtn = classnames(style.find_btn, 'button')
 
 export default class Home extends Component {
   componentWillMount () {
-    mixpanel.track('User visited Home page')
+		if (typeof window !== 'undefined') {
+			mixpanel.track('User visited Home page')
+		}
   }
   render () {
     return (
       <section className={style.home}>
+				<Helmet title='Home' />
         <div class={style.banner}>
           <div>
             <h1>Finding <br /> PVC collection centers <br /> shouldn't be hard.</h1>

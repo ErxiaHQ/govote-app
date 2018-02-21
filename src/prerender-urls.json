@@ -1,0 +1,7 @@
+[
+	{ "url": "/", "title": "Home" },
+	{ "url": "/why", "title": "govote - Why" },
+	{ "url": "/about", "title": "govote - About" },
+	{ "url": "/share", "title": "govote - Share" },
+	{ "url": "/search", "title": "govote - Search" }
+]

@@ -1,13 +1,17 @@
 import { h, Component } from 'preact'
+import Helmet from 'preact-helmet'
 import style from './style'
 
 export default class About extends Component {
 	componentWillMount () {
-		mixpanel.track('User visited About page')
+		if (typeof window !== 'undefined') {
+			mixpanel.track('User visited About page')
+		}
 	}
 	render () {
 		return (
-			<div className={style.about_container}>
+			<section className={style.about_container}>
+				<Helmet title='About' />
 				<h1>About<br /> govote 🙏🏿</h1>
 
 				<p>govote was built to make sure that the first hurdle concerning the elections can be cleared; registering to vote.</p>
@@ -32,7 +36,7 @@ export default class About extends Component {
 					<a href='https://github.com/pyjac' rel='noopener noreferrer' target='_blank'>Oyebanji Jacob Mayowa</a> <br />
 					<a href='https://github.com/Mrkezii' rel='noopener noreferrer' target='_blank'>David Kezi</a>
 				</p>
-			</div>
+			</section>
 		)
 	}
 }

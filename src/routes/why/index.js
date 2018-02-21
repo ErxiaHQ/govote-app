@@ -1,17 +1,21 @@
 import { h, Component } from 'preact'
-import style from './style'
+import Helmet from 'preact-helmet'
 import classnames from 'classnames'
 import { Link } from 'preact-router/match'
+import style from './style'
 
 let findBtn = classnames(style.find_btn, 'button')
 
 export default class Why extends Component {
   componentWillMount () {
-    mixpanel.track('User visited Why page')
+		if (typeof window !== 'undefined') {
+			mixpanel.track('User visited Why page')
+		}
   }
   render () {
     return (
-      <div className={style.why_container}>
+      <section className={style.why_container}>
+				<Helmet title='Why' />
         <h1>THIS IS NOT THE<br />
           TIME TO BE<br />
           PASSIVE. 👏🏿👏🏿</h1>
@@ -37,7 +41,7 @@ export default class Why extends Component {
         <p>In the 2015 elections, only 33.7% (67,422,005) of the general population registered to vote (only 43.65% of the 67,422,005 eventually turned out to vote.) <em><a href='http://www.inecnigeria.org/wp-content/uploads/2015/04/summary-of-results.pdf' rel='noopener noreferrer' target='_blank'>Source</a></em>.<br /> Let's increase that percentage for the upcoming election.</p>
 
         <Link className={findBtn} href='/search'>Find a PVC Collection Ward</Link>
-      </div>
+      </section>
     )
   }
 }

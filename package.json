@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
-    "build": "preact build --template src/template.html --no-prerender",
+    "build": "preact build --production --prerender --prerenderUrls src/prerender-urls.json --template src/template.html",
     "serve": "preact build && preact serve",
     "dev": "preact watch --template src/template.html",
     "lint": "eslint src",
@@ -38,6 +38,7 @@
     "history": "^4.7.2",
     "preact": "^8.2.6",
     "preact-compat": "^3.18.0",
+    "preact-helmet": "^4.0.0-alpha-3",
     "preact-router": "^2.5.7",
     "prop-types": "^15.6.0",
     "rodal": "^1.6.3"
