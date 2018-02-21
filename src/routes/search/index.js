@@ -3,6 +3,7 @@ import { route } from 'preact-router'
 import axios from 'axios'
 import classnames from 'classnames'
 import Rodal from 'rodal'
+import Helmet from 'preact-helmet'
 import style from './style.css'
 import Placeholder from '../../components/placeholder/'
 import Location from '../../components/location'
@@ -127,7 +128,8 @@ export default class Search extends Component {
 			disqus_show: showdisqus
 		})
 		return (
-			<div className={style.search}>
+			<section className={style.search}>
+				<Helmet title='Search' />
 				<div className={style.search_bar}>
 					<p>Enter your location below and we'll show PVC wards close to you.</p>
 					<form onSubmit={this.handleSubmit}>
@@ -383,7 +385,7 @@ export default class Search extends Component {
 						</div>
 					</div>
 				</Rodal>
-			</div>
+			</section>
 		)
 	}
 }

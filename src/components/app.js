@@ -30,7 +30,7 @@ export default class App extends Component {
 		return (
 			<div id='app'>
 				<Header />
-				<Router history={createHashHistory()} onChange={this.handleRoute}>
+				<Router onChange={this.handleRoute}>
 					<AsyncRoute path='/' component={Home} />
 					<AsyncRoute path='/about' component={About} />
 					<AsyncRoute path='/search' component={Search} replace />
